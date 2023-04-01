@@ -9,6 +9,7 @@ var respBubble;
 var messageHistory = [];
 var socket;
 var uInput = document.getElementById("uInput");
+var objDiv = document.getElementById("messages");
 
 function sendMessage() {
   let inputText = uInput.value;
@@ -24,10 +25,12 @@ function sendMessage() {
   sendBubble.innerText = inputText;
   messages.appendChild(sendBubble);
 
-  sendBubble.scrollIntoView({ behavior: "smooth" });
+  objDiv.scrollTop = objDiv.scrollHeight;
   let status = document.createElement("div");
-  messages.appendChild(status);
+  status.className = "status";
   status.innerHTML = "🤔 Reading the page...";
+  messages.appendChild(status);
+  objDiv.scrollTop = objDiv.scrollHeight;
   socket.emit("ground", {
     "site": document.referrer,
     "prompt": inputText,
@@ -44,6 +47,7 @@ socket = io("wss://DaisyGPT-Realtime.tranch-research.repl.co");
 
 socket.on("connect", () => {
   let status = document.createElement("div");
+  status.className = "status";
   status.innerHTML = "🤔 Reading the page...";
   messages.appendChild(status);
   socket.emit("ground", {
@@ -55,8 +59,10 @@ socket.on("connect", () => {
 
 socket.on("groundingPrompt", (prompt) => {
   let status = document.createElement("div");
+  status.className = "status";
   status.innerHTML = "✅ Generating a response...";
   messages.appendChild(status);
+  objDiv.scrollTop = objDiv.scrollHeight;
   messageHistory.push({
     "role": "user",
     "content": prompt,
@@ -88,8 +94,7 @@ socket.on("recv", (data) => {
     bubbleCreated = true;
   } else {
     respBubble.innerText = fullData;
-
-    respBubble.scrollIntoView();
+    objDiv.scrollTop = objDiv.scrollHeight;
   }
 });
 
@@ -102,5 +107,5 @@ socket.on("done", () => {
     "content": fullData,
   });
   fullData = "";
-  respBubble.scrollIntoView({ behavior: "smooth" });
+  objDiv.scrollTop = objDiv.scrollHeight;
 });
