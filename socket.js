@@ -47,7 +47,7 @@ socket.on("connect", () => {
   status.innerHTML = "🤔 Reading the page...";
   messages.appendChild(status);
   socket.emit("ground", {
-    "site": "https://lifelabsproject.tk",
+    "site": document.referrer,
     "prompt":
       "You're now in a conversation with a user. Greet them and introduce yourself.",
   });
@@ -62,7 +62,7 @@ socket.on("groundingPrompt", (prompt) => {
     "content": prompt,
   });
   socket.emit("begin", {
-    "site": "https://lifelabsproject.tk",
+    "site": document.referrer,
     "prompt": prompt,
     "context": messageHistory,
   });
