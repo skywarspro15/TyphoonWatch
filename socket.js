@@ -29,7 +29,7 @@ function sendMessage() {
   messages.appendChild(status);
   status.innerHTML = "🤔 Reading the page...";
   socket.emit("ground", {
-    "site": "https://lifelabsproject.tk",
+    "site": document.referrer,
     "prompt": inputText,
   });
 }
