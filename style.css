@@ -1,4 +1,4 @@
-/* @font-face {
+@font-face {
   font-family: SegoeUIVariable;
   src: url("fonts/Segoe-UI-Variable-Static-Display.ttf");
 }
@@ -21,114 +21,422 @@
 @font-face {
   font-family: SegoeUIVariableSemilight;
   src: url("fonts/Segoe-UI-Variable-Static-Display-Semilight.ttf");
-} */
-/* fonts cause unbearable loading times for me  */
-
-* {
-  font-family: SegoeUIVariable, "Segoe UI Variable", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-html,
-body {
-  background: #0a0a0a; 
-  color: #ffffff; 
+body,
+html {
+  height: 100%;
+  min-height: 200vh;
 }
 
-::-webkit-scrollbar {
-  width: 3px;
-  height: 10px;
+body:hover > #trailer {
+  opacity: 0;
+}
+
+#trailer {
+  padding: 20px;
+  background: rgba(18, 18, 18, 0.7);
+  backdrop-filter: blur(20px);
+  border-radius: 30px;
+
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 6942069;
+
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 500ms ease;
+
+  display: grid;
+  place-items: center;
+  vertical-align: top;
+}
+
+#trailer-text {
+  color: white;
+  text-align: left;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.menu {
+  transition: all 500ms;
+  display: flex;
+  flex-direction: row;
+  gap: 30vw;
+}
+
+.menu-list {
+  transition: all 500ms;
+  transition-delay: 200ms;
+  list-style-type: none;
+  font-size: 250%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.menu-list li a {
+  font-size: 8vh;
+  color: gray;
+  transition: all 200ms;
+  text-align: left;
+}
+
+.menu-list {
+  transition: all 500ms;
+  transition-delay: 200ms;
+  list-style-type: none;
+  font-size: 25vh;
+}
+
+.menu-list li.right a {
+  transition: all 500ms;
+  font-size: 50;
+  color: gray;
+  transition: all 200ms;
+  text-align: right;
+  margin-right: 8vh;
+  font-size: 8vh;
+}
+
+.menu-list li a:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.menu-list li a:active {
+  color: white;
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff,
+    0 0 50px #fff, 0 0 60px #fff, 0 0 70px #fff;
+}
+
+.menu-list li.right a:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.menu-list li.right a:active {
+  color: white;
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff,
+    0 0 50px #fff, 0 0 60px #fff, 0 0 70px #fff;
+}
+
+.hidden {
+  opacity: 0;
+  filter: none;
+}
+
+#menu-list.hidden {
+  transform: translateY(250px);
+}
+
+ul.statList {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 30vw;
+  margin: 0;
+  padding: 0;
+}
+
+ul.statList li {
+  text-align: center;
+}
+
+ul.statList li p.title {
+  font-size: 5em;
+}
+
+#title {
+  background: #121FCF;
+  background: linear-gradient(to right, #121FCF 0%, #8B23DB 54%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   transition: all 500ms;
 }
 
-::-webkit-scrollbar-thumb {
-  background: rgb(180, 180, 180);
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgb(150, 150, 150);
-}
-
-.title {
-  /* Created with https://www.css-gradient.com */
-  color: rgba(121, 54, 128, 1);
-  color: -webkit-linear-gradient(
-    top left,
-    rgba(121, 54, 128, 1),
-    rgba(62, 18, 81, 1)
-  );
-  color: -moz-linear-gradient(
-    top left,
-    rgba(121, 54, 128, 1),
-    rgba(62, 18, 81, 1)
-  );
-  color: linear-gradient(
-    to bottom right,
-    rgba(121, 54, 128, 1),
-    rgba(62, 18, 81, 1)
-  );
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.navbar {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-}
-
-.nav-item {
-  margin: 0 15px;
-}
-
-.nav-item a.navLink {
-  text-decoration: none; 
-  color: white; 
-  margin: 10px;s
-}
-
-.left {
-  margin-right: auto;
-}
-
-.right {
-  margin-left: auto;
-}
-
-.container {
-  position: relative;
-  height: 100vh;
+#title:hover {
+  color: white;
 }
 
 .parallax {
-  position: absolute;
-  top: 0;
-  left: 0;
+  /* The image used */
+  background-image: url("https://source.unsplash.com/1600x900/?storm%20clouds");
+
+  /* Full height */
+  height: 50%;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation: scrollFadeOut 0.5s ease-in-out infinite;
+  animation-play-state: paused;
+  animation-delay: calc(var(--scroll) * -1s);
+
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+  z-index: 100000000000;
+}
+
+.scroll-fade-out {
+  animation: scrollFadeOut2 0.5s ease-in-out infinite;
+  animation-play-state: paused;
+  animation-delay: calc(var(--scroll) * -1s);
+
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+}
+
+#menu-list {
+  margin-top: 10%;
+  margin-bottom: 8vh;
+}
+
+.rise {
+  animation: enterUp 1.5s ease-in-out infinite;
+  animation-play-state: paused;
+  animation-delay: calc(var(--scroll) * -1s);
+
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+}
+
+.cards.rise {
+  animation: enterUp 3s ease-in-out infinite;
+  animation-play-state: paused;
+  animation-delay: calc(var(--scroll) * -1s);
+
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+}
+
+.button.scroll-top {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  text-align: center;
+  z-index: 40000000000;
+}
+
+.tip-frame {
+  max-height: 550px; 
+}
+
+.tip-frame.logged-in .tip-box {
+  height: 400px;
+  overflow: scroll;
+}
+
+.tip-frame.logged-in .inputs {
+  display: flex; 
+  gap: 10px; 
+  width: 100%; 
+  bottom: 0;
+}
+
+.tip-frame.not-logged-in .buttons button {
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 32px; 
   width: 100%;
-  height: 100%;
-  filter: blur(50px); 
-  opacity: 0.6;
-  object-fit: cover;
 }
 
-.front-text-title {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+
+
+.tip-frame.not-logged-in .buttons {
+  display: flex; 
+  gap: 10px; 
+  width: 100%; 
 }
 
-.front-text-subtitle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.front-text-title {
-  font-size: 3rem;
+.tip-frame.not-logged-in input {
+  width: 98.5%; 
 }
 
-.front-text-subtitle {
-  font-size: 1.5rem;
+
+.tip-frame.logged-in input {
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 32px; 
+  width: 100%; 
+}
+
+.tip-frame.logged-in .inputs button {
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 32px; 
+  right: 0; 
+}
+
+
+
+.tip-frame.logged-in .tip-box .tip p.username {
+  font-family: SegoeUIVariableSemibold;
+  font-size: 18px;
+}
+
+.tip-frame.logged-in .tip-box .tip p.content {
+  font-size: 14.5px;
+}
+
+.tip-frame.logged-in .tip-box .tip {
+  max-width: 95%;
+}
+
+.tip-frame.logged-in .tip-box .tip button.likeButton {
+  font-family: SegoeUIVariable;
+  border-radius: 5px;
+  border: 1px solid rgb(50,50,50);
+  background-color: rgb(30,30,30);
+  font-size: 14px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 0; 
+  padding-bottom: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.tip-frame.logged-in .tip-box .tip button.likeButton:hover {
+  /* background-color: rgb(55,55,55); */
+  cursor: pointer;
+}
+
+
+@media screen and (max-width: 950px) {
+  .menu-list li.right a {
+    font-size: 6vh;
+  }
+  .menu-list li a {
+    font-size: 6vh;
+    text-align: center;
+  }
+  #menu-list {
+    margin-top: 20%;
+    margin-bottom: 8vh;
+    margin-right: 20%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .menu {
+    display: inline-block;
+  }
+  .menu-list li.right a {
+    color: gray;
+    transition: all 200ms;
+    text-align: left;
+    font-size: 5vh;
+  }
+  .menu-list li a {
+    color: gray;
+    transition: all 200ms;
+    text-align: center;
+    font-size: 5vh;
+  }
+  #menu-list {
+    margin-top: 20%;
+    margin-bottom: 8vh;
+    margin-right: 20%;
+  }
+  .button.scroll-top {
+    position: fixed;
+    left: 24px;
+    bottom: 24px;
+    text-align: center;
+    z-index: 40000000000;
+  }
+
+  .tip-frame {
+    max-height: 600px; 
+  }
+
+  .tip-frame.logged-in .tip-box {
+    height: 600px;
+    overflow: scroll;
+  }
+
+  .tip-frame.logged-in .tip-box .tip {
+    max-width: 100%;
+  }
+  
+}
+
+@keyframes enterUp {
+  0% {
+    opacity: 0;
+    transform: translateY(250px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scrollFadeOut {
+  0% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes scrollFadeOut2 {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes countingUp {
+  50% {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  75% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes countingDown {
+  50% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  75% {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes countingDown {
+  50% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  75% {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

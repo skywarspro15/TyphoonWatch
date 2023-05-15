@@ -1,32 +1,318 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>TyphoonWatch</title>
-  </head>
-  <body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- HTML Meta Tags -->
+  <title>TyphoonWatch</title>
+  <meta name="description"
+    content="A group project by the Tranch Research Institute with the goal of mitigating the effects of typhoons." />
+
+  <!-- Facebook Meta Tags -->
+  <meta property="og:url" content="https://lifelabsproject.tk" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="TyphoonWatch" />
+  <meta property="og:description"
+    content="A group project by the Tranch Research Institute with the goal of mitigating the effects of typhoons." />
+  <meta property="og:image" content="https://lifelabsproject.tk/images/logo.png" />
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="twitter:domain" content="lifelabsproject.tk" />
+  <meta property="twitter:url" content="https://lifelabsproject.tk" />
+  <meta name="twitter:title" content="TyphoonWatch" />
+  <meta name="twitter:description"
+    content="A group project by the Tranch Research Institute with the goal of mitigating the effects of typhoons." />
+  <meta name="twitter:image" content="https://lifelabsproject.tk/images/logo.png" />
+
+  <!-- Meta Tags Generated via https://www.opengraph.xyz -->
+
+  <meta content="#43cea2" data-react-helmet="true" name="theme-color" />
+  <link rel="stylesheet" href="tranchui-latest.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/x-icon" href="icons/favicon.ico" />
+  <title>TyphoonWatch</title>
+</head>
+
+<body>
+  <div id="trailer">
+    <p id="trailer-text"></p>
+  </div>
+  <button class="button scroll-top" onclick="scrollToTop();" id="scrollTopButton">
+    ^
+  </button>
+  <div class="navContainer">
     <ul class="navbar">
-      <li class="nav-item left"
-        ><a href="index.html" class="title">TyphoonWatch</a></li
-      >
-      <li class="nav-item">
-        <a class="navLink" href="#">Home</a>
-        <a class="navLink" href="#">Mitigating the effects</a>
-        <a class="navLink" href="#">Typhoon wind map</a>
-        <a class="navLink" href="#">How typhoons form</a>
-        <a class="navLink" href="#">Staying safe</a>
+      <li class="nav-item left" id="title">
+        <a href="index.html" class="semibold" id="title">TyphoonWatch</a>
+      </li>
+      <li class="nav-item left responsive">
+        <a href="javascript: openModal('aboutModal');">About us</a>
+      </li>
+      <li class="nav-item left responsive">
+        <a href="mailto:tranchsoftware@gmail.com">Contact us</a>
+      </li>
+      <li class="nav-item left responsive">
+        <a href="javascript: loadPage('windmap.html');">Typhoon wind map</a>
+      </li>
+      <li class="nav-item left responsive">
+        <a href="javascript: loadPage('faqs.html');">FAQs about Typhoons</a>
+      </li>
+      <li class="nav-item left responsive">
+        <a href="#solutionTitle">Staying safe</a>
+      </li>
+      <li class="nav-item left responsive">
+        <a href="javascript: loadPage('tips.html');">Community tips</a>
+      </li>
+      <li class="nav-item right responsive">
+        <a class="button" href="#problemTitle">Learn more</a>
+      </li>
+      <li class="nav-item right">
+        <a class="icon" id="showMore" href="javascript: navItemShow('showMore')"><img class="iconImg"
+            src="icons/down-arrow.png" /></a>
       </li>
     </ul>
-    <div class="container">
-      <img src="https://source.unsplash.com/1600x900/?typhoons" alt="Image of a typhoon" class="parallax">
-      <h1 class="front-text-title">Typhoons are dangerous.</h1>
-      <p class="front-text-subtitle">And we're here to mitigate them.</p>
+  </div>
+  <div class="loadScreen" id="loader">
+    <div class="lds-roller" id="roller">
+      <img class="error" src="icons/warning.png" style="width: 80px; height: 80px" />
     </div>
-  </body>
-  <script src="https://daisy.powerui.tk/widget.js"></script>
-  <script src="script.js"></script>
-  <!-- <script src="socket.js" type="module"></script> -->
+    <br />
+    <p id="loadStatus" class="subtitle" style="text-align: center">
+      JavaScript must be enabled to load this page.
+    </p>
+    <button class="button interactable" onclick="hideLoader();" style="margin-top: 10px" data-type="Skip page load">
+      Skip page load
+    </button>
+  </div>
+  <div class="parallax"></div>
+  <div class="vcenter">
+    <p class="title scroll-fade-out" style="text-align: center">
+      Typhoons are dangerous.
+    </p>
+    <p class="subtitle scroll-fade-out" style="text-align: center">
+      And we're here to mitigate them
+    </p>
+    <div class="buttons scroll-fade-out" style="
+          margin-top: 10px;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        ">
+      <button class="button" style="margin-left: 10px; text-align: center"
+        onclick="window.location.href = '#problemTitle';">
+        Learn more
+      </button>
+      <button class="button" style="margin-left: 10px; text-align: center" onclick="loadPage('video.html')">
+        Watch video
+      </button>
+    </div>
+    <div class="menu hidden" id="menu-list">
+      <ul class="menu-list">
+        <li class="interactable" data-type="Give feedback on this project">
+          <a class="title" href="javascript:loadPage('feedback.html');">Give Feedback</a>
+        </li>
+        <li class="interactable" data-type="Information">
+          <a class="title" href="#problemTitle">More Information</a>
+        </li>
+      </ul>
+      <ul class="menu-list">
+        <li class="right interactable" data-type="About the site">
+          <a class="title" href="javascript: loadPage('faqs.html');">FAQs</a>
+        </li>
+        <li class="right interactable" data-type="Pricing of the show">
+          <a class="title" href="#solutionTitle">Staying Safe</a>
+        </li>
+      </ul>
+    </div>
+    <p id="problemTitle" class="title">Casualties</p>
+    <p id="problemDescription" class="subtitle">
+      How typhoons can affect people
+    </p>
+    <ul class="cards hidden" id="problem" style="
+          margin-top: 10px;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        ">
+      <li class="cards-item">
+        <a>
+          <div class="card">
+            <div class="card-image">
+              <img class="lazyload" data-src="images/floods.webp" />
+            </div>
+            <div class="card-content">
+              <h2 class="card-title">17+ people killed by floods</h2>
+              <p class="card-text">
+                According to the news sources, over 17 people were killed by floods and landslides after Typhoon Parma
+                struck the Philippines.
+              </p>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li class="cards-item">
+        <a>
+          <div class="card">
+            <div class="card-image">
+              <img class="lazyload" data-src="images/homes.webp" />
+            </div>
+            <div class="card-content">
+              <h2 class="card-title">930 homes affected</h2>
+              <p class="card-text">
+                Ilocos Norte reported 924 homes were affected by the flood, while Benguet reported 6 homes damaged by
+                landslides
+              </p>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li class="cards-item">
+        <a>
+          <div class="card">
+            <div class="card-image">
+              <img class="lazyload" data-src="images/people-affected.webp" />
+            </div>
+            <div class="card-content">
+              <h2 class="card-title">9.3+ million people affected</h2>
+              <p class="card-text">
+                Over 9.3 million people were affected by Typhoon Pepeng along with Typhoon Ondoy. It claimed 956 lives,
+                700 were injured, and left 84 people missing.
+              </p>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+    <br />
+    <br />
+    <p id="solutionTitle" class="title">Solutions</p>
+    <p id="solutionDescription" class="subtitle">
+      How does one conquer these typhoons?
+    </p>
+    <ul class="cards hidden" id="solution" style="
+          margin-top: 10px;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        ">
+      <li class="cards-item">
+        <a>
+          <div class="card">
+            <div class="card-image">
+              <img class="lazyload" data-src="images/prepare.jpg" />
+            </div>
+            <div class="card-content">
+              <h2 class="card-title">Be prepared</h2>
+              <p class="card-text">
+                Have a preparedness plan. This is to ensure that you know what steps you should take in case of
+                emergency. Charge your devices, and have a preparedness kit.
+              </p>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li class="cards-item">
+        <a>
+          <div class="card">
+            <div class="card-image">
+              <img class="lazyload" data-src="images/news.jpg" />
+            </div>
+            <div class="card-content">
+              <h2 class="card-title">Always stay updated</h2>
+              <p class="card-text">
+                Preparedness won't come in handy if you don't know what's going on around you. Nowadays, you can stay
+                updated by listening to radio, watching TV, and reading articles from trusted news sources online.
+              </p>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li class="cards-item">
+        <a>
+          <div class="card">
+            <div class="card-image">
+              <img class="lazyload" data-src="images/evacuate.jpg" />
+            </div>
+            <div class="card-content">
+              <h2 class="card-title">Seek a safe place to stay</h2>
+              <p class="card-text">
+                During a typhoon, seek a safe place to evacuate. Preferrably, underground. Listen for updates in the
+                radio, and wait for updates on when you can safely go out.
+              </p>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+    <footer class="footer">
+      <p class="footer-item title">TyphoonWatch</p>
+      <a class="footer-item subtitle underline" href="https://github.com/skywarspro15/School-Project"
+        target="__blank">View source on GitHub</a>
+      <a style="margin-left: 10px" class="footer-item subtitle underline"
+        href="javascript:openModal('credits');">Credits & Inspiration</a>
+      <p class="footer-item subtitle" id="onlineUsers"></p>
+      <p class="footer-item subtitle" id="totalUsers"></p>
+    </footer>
+  </div>
+  <div id="aboutModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p class="title">About TyphoonWatch</p>
+      <p class="subtitle">
+        TyphoonWatch is a project from the Tranch Research Institute with a goal of mitigating the effects of
+        typhoons.<br /><br />
+        In this site, we cover how we could mitigate the effects of typhoons, preparing for the typhoon, and what to do
+        during a typhoon.
+      </p>
+    </div>
+  </div>
+  <div id="announcementModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p class="title">Announcement from the team</p>
+      <p class="subtitle" id="announcementContent">Loading...</p>
+    </div>
+  </div>
+  <div id="credits" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p class="title">Credits & Inspiration</p>
+      <p class="subtitle">Things that made this site possible!</p>
+      <br />
+      <a class="subtitle underline" href="https://unsplash.com" target="_blank">Cover image from Unsplash</a>
+      <br />
+      <a class="subtitle underline" href="https://flaticon.com" target="_blank">Icons from Flaticon</a>
+      <br />
+      <a class="subtitle underline" href="https://repl.it" target="_blank">Backend servers from Replit</a>
+      <br />
+      <a class="subtitle underline" href="https://netlify.app" target="_blank">
+        Front-end hosting from Netlify
+      </a>
+      <br />
+      <a class="subtitle underline" href="https://freenom.com" target="_blank">
+        Domain from Freenom
+      </a>
+      <br />
+      <br />
+      <a class="subtitle underline" href="https://linear.app/" target="_blank">Design Inspiration from:
+        https://linear.app/</a>
+    </div>
+  </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"
+  integrity="sha512-q583ppKrCRc7N5O0n2nzUiJ+suUv7Et1JGels4bXOaMFQcamPk9HjdUknZuuFjBNs7tsMuadge5k9RzdmO+1GQ=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://daisy.powerui.tk/widget.js"></script>
+<script src="tranchui.js"></script>
+<script src="script.js"></script>
+<script src="socket.js" type="module"></script>
+<script src="tips.js" type="module"></script>
+
 </html>

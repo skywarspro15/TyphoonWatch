@@ -1,0 +1,35 @@
+<input hidden type="text" id="stateChange">
+<div hidden class="tip-frame" id="Connecting">
+  <p class="title" id="LoadTitle">Connecting...</p>
+  <p class=="subtitle" id="LoadSubtitle">Hang tight, we're getting you connected...</p>
+  <button hidden="true" class="button" id="SignIn">Try again</button>
+</div>
+<div hidden id="LoggedIn" class="tip-frame logged-in">
+  <p class="title">Community tips</p>
+  <p class="subtitle">Read typhoon tips from people around the community</p>
+  <h4 class="info-text">Comments are being moderated. Please read the <a href="tos.html" target="_blank"><strong>Terms
+        of
+        Service</strong></a> before posting.</h4>
+  <div id="TipBox" class="tip-box">
+
+  </div>
+  <div class="inputs">
+    <input type="text" id="TipInput" autocomplete="off">
+    <button id="TipSubmit" class="button">Submit</button>
+  </div>
+</div>
+<div hidden id="NotLoggedIn" class="tip-frame not-logged-in">
+  <p class="title">Log in with PowerUI Cloud</p>
+  <p class="subtitle">Log in to get started posting.</p>
+  <h4 class="info-text">INFO: Due to this site being new, browsers may not recognize this account system and flag it. We
+    store our passwords securely, with encryption baked into them.</h4>
+  <h4 class="info-text">Your username</h4>
+  <input type="name" id="PUIUser" placeholder="Username">
+  <h4 class="info-text">Your password</h4>
+  <input type="password" id="PUIAuth" placeholder="Password">
+  <br> <br> <br>
+  <div class="buttons">
+    <button class="button" id="PUILogin">Log in</button>
+    <button class="button" id="PUISignup">Sign up</button>
+  </div>
+</div>
